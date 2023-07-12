@@ -274,6 +274,14 @@ public class SystemImpl implements SystemInterface {
     }
 
     @Override
+    public boolean isMultiProcessDefaultEnabled() {
+        // Multiprocess is enabled for all 64-bit devices, since the ability to run the renderer
+        // process in 32-bit when it's a separate process typically results in a net memory saving.
+        // Multiprocess is also enabled for 32-bit devices unless they report they are "low ram".
+        return Build.SUPPORTED_64_BIT_ABIS.length > 0 || !ActivityManager.isLowRamDeviceStatic();
+    }
+
+    @Override
     public void pinWebviewIfRequired(ApplicationInfo appInfo) {
         PinnerService pinnerService = LocalServices.getService(PinnerService.class);
         int webviewPinQuota = pinnerService.getWebviewPinQuota();
