@@ -273,7 +273,7 @@ public class SystemImpl implements SystemInterface {
         WebViewZygote.getProcess();
     }
 
-    @Override
+//    @Override
     public boolean isMultiProcessDefaultEnabled() {
         // Multiprocess is enabled for all 64-bit devices, since the ability to run the renderer
         // process in 32-bit when it's a separate process typically results in a net memory saving.
